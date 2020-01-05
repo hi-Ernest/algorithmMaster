@@ -62,9 +62,63 @@ public class NQueens {
         return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
-        NQueens nQueens = new NQueens();
-        System.out.println(nQueens.solveNQueens(4));
+
+
+
+    private static int count = 0;
+
+    /**
+     * 2.使用位运算
+     * @param n
+     * @return
+     */
+    public int totalNQueens(int n) {
+        if (n < 1)
+            return 0;
+        dfs_bit(n, 0, 0, 0, 0);
+        return count;
     }
 
+    /**
+     *
+     * @param n
+     * @param row
+     * @param cols
+     * @param pie
+     * @param na
+     */
+    private void dfs_bit(int n, int row, int cols, int pie, int na) {
+        if (row >= n) {
+            count++;
+            return;
+        }
+
+        //得到当前所有空位
+        int bits = (~(cols | pie | na)) & ((1 << n) - 1);
+
+        while (bits != 0) {
+            //取到最低位的1
+            int p = bits & -bits;
+            dfs_bit(n, row + 1, cols | p, (p | pie) << 1, (p | na) >> 1);
+            //去掉最低位的1
+            bits = bits & (bits - 1);
+        }
+    }
+
+    public static void main(String[] args) {
+        NQueens nQueens = new NQueens();
+//        System.out.println(nQueens.solveNQueens(4));
+        List<List<String>> res = nQueens.solveNQueens(4);
+        for (int i=0; i<res.size(); i++) {
+            List<String> temp = res.get(i);
+            System.out.print("[");
+            for (int j =0; j<temp.size(); j++) {
+                System.out.println(temp.get(j));
+            }
+            System.out.println("]");
+            System.out.println("--------------");
+        }
+        nQueens.totalNQueens(4);
+        System.out.println(count);
+    }
 }
