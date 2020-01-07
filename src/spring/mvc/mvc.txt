@@ -1,0 +1,19 @@
+spring MVC 有什么作用？
+    - Spring Web MVC 框架提供 模型-视图-控制器 架构和随时可用的组件，用于开发灵活且松散耦合的 Web 应用程序
+
+描述一下 DispatcherServlet 的工作流程
+    - 服务器发送 http request -> 前端控制器 DispatcherServlet 捕获[根据 -servlet.xml 中配置对请求 URL 解析]
+                                根据 URL 调用 HandlerMapping 获得 Handlder 所有相关对象，以 HandlerExecutionChain 对象的形式返回
+
+        -> DispatcherServlet 根据获得 Handler，选择合适的 HandlerAdapter后，此时开始执行拦截器的 preHandler(...)方法
+        -> 提取 Request 中模型数据，填充 Handler 的入参，根据配置 Spring 将做一些额外工作：
+                                  1）HttpMessageConveter:将请求消息(如 Json、xml 等数据)转换成一个对象，将对象转换为指定的响应信息。
+                                  2）数据转换:对请求消息进行数据转换。如 String 转换成 Integer、 Double 等。
+                                  3）数据根式化:对请求消息进行数据格式化。如将字符串转换成格式化数字或格式化日期等。
+                                  4）数据验证:验证数据的有效性(长度、格式等)，验证结果存储到 BindingResult 或 Error 中
+
+        -> Handler(Controller)执行完成后，向 DispatcherServlet 返回一个 ModelAndView 对象
+        -> 根据返回的 ModelAndView，选择一个适合的 ViewResolver(必须是已经注册到 Spring 容器中的 ViewResolver)返回给 DispatcherServlet。
+        -> ViewResolver 结合 Model 和 View，来渲染视图
+        -> 视图负责将渲染结果返回给客户端 ==> http response
+

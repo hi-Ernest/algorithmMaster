@@ -1,0 +1,37 @@
+1.静态代理 -> 指定 AOP 框架提供的命令进行编译 -> 编译阶段产生AOP代理类
+2.动态代理
+    在运行时在内存"临时"生成 AOP 动态代理类 ==> 运行时增强
+    1）JDK动态代理
+    2）CGLIB
+
+    spring AOP基于动态代理；而AspectJ AOP基于静态代理
+    Spring AOP仅支持方法级别的pointCut；全部都支持(包括属性级pointcut)
+
+    动态代理 ==> 利用截取消息的方式，对该消息修饰，以取代原有对象行为的执行
+    静态织入 ==> 引入特定的语法创建“方面”，从而使得编译器可以在编译期间织入有关“方面”的代码。
+
+
+    AOP应用场景：权限认证、日志、事务处理
+        - 把通用服务模块提取出来
+            - 将那些与业务无关，却为业务模块所共同调用的逻辑或者责任封装起来
+                -> 便于减少系统的代码量，降低模块间耦合，利于未来的可操作性和可维护性
+
+    应用场景ps:Authentication 权限
+              Caching 缓存
+              Context passing 内容传递
+              Error handling 错误处理
+              Lazy loading　懒加载
+              Debugging　　调试
+              logging, tracing, profiling and monitoring　记录跟踪　优化　校准
+              Performance optimization　性能优化
+              Persistence　　持久化
+              Resource pooling　资源池
+              Synchronization　同步
+              Transactions 事务
+
+    通知(Advice): 在JoinPoint(连接点)前后执行
+        - @Before 在 joinpoint 方法之前执行
+        - @AfterReturning 在连接点方法正常执行后执行
+        - @AferThrowing 仅在 joinpoint 方法通过抛出异常退出
+        - @After 在 joinpoint 方法之后执行
+        - @Around 在连接点之前和之后执行
