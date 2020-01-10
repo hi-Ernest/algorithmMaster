@@ -12,6 +12,7 @@ public class BuyAndSellStocks {
         if (prices == null || prices.length == 0)
             return 0;
 
+        //使用贪心算法 -> 不然解题Java内存不够
         if (tNumber > prices.length / 2)
             return greedy(prices);
 
@@ -39,7 +40,6 @@ public class BuyAndSellStocks {
 
         return maxProfit;
     }
-
 
     private int greedy(int[] prices) {
         int maxProfit = 0;
