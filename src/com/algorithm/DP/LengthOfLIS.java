@@ -4,6 +4,11 @@ import java.util.*;
 
 public class LengthOfLIS {
 
+    /**
+     * 时间复杂度：O(N^2)
+     * @param nums
+     * @return
+     */
     public int lengthOfLIS(int[] nums) {
         if (nums == null || nums.length == 0)
             return 0;
@@ -29,9 +34,10 @@ public class LengthOfLIS {
     public int lengthOfLIS_binary(int[] nums) {
         List<Integer> res = new LinkedList<>();
 
+        Arrays.sort(nums);
         for (int i = 0; i < nums.length; i++) {
             int searchIndex = binarySearch(res);
-            if (searchIndex == res.size()) {
+            if (searchIndex == res.size()-1) {
                 res.add(nums[i]);
             }else {
                 res.remove(searchIndex);
@@ -39,7 +45,6 @@ public class LengthOfLIS {
             }
 
         }
-
         return res.size();
     }
 
