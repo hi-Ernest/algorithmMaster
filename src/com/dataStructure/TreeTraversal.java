@@ -124,19 +124,30 @@ public class TreeTraversal {
     }
 
     /**
-     * 二叉树最大深度
+     * 二叉树最大深度 -> 自底向上
      * @param root
      * @return
      */
-    public int maxDepth(TreeNode root) {
+    public int maxDepth_bottom_up(TreeNode root) {
         if (root == null)
             return 0;
-        int left = maxDepth(root.left);
-        int right = maxDepth(root.right);
+        int left = maxDepth_bottom_up(root.left);
+        int right = maxDepth_bottom_up(root.right);
         return Math.max(left, right) + 1;
     }
 
-    private static int maxDepth1(TreeNode root) {
+    private int answer;
+
+    public void maxDepth_top_down(TreeNode root, int maxDepth) {
+        if (root == null)
+            return;
+        if (root.left == null && root.right == null)
+            answer = Math.max(answer, maxDepth);
+        maxDepth_top_down(root.left, maxDepth + 1);
+        maxDepth_top_down(root.right, maxDepth + 1);
+    }
+
+    public static int maxDepth_bfs(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -149,42 +160,75 @@ public class TreeTraversal {
             maxDepth++;
             int levelSize = queue.size();
             for (int i = 0; i < levelSize; i++) {
-                TreeNode node = queue.pollFirst();
-                if (node.left != null) {
-                    queue.add(node.left);
+                TreeNode cur = queue.pollFirst();
+                if (cur.left != null) {
+                    queue.add(cur.left);
                 }
-                if (node.right != null) {
-                    queue.add(node.right);
+                if (cur.right != null) {
+                    queue.add(cur.right);
                 }
             }
         }
         return maxDepth;
     }
 
-//    private static int maxDepth2(TreeNode root) {
-//        if (root == null) {
-//            return 0;
-//        }
-//        LinkedList<Pair<TreeNode, Integer>> stack = new LinkedList<>();
-//        stack.push(new Pair<>(root, 1));
-//        int maxDepth = 0;
-//        //DFS实现前序遍历，每个节点记录其所在深度
-//        while (!stack.isEmpty()) {
-//            Pair<TreeNode, Integer> pair = stack.pop();
-//            TreeNode node = pair.first;
-//            //DFS过程不断比较更新最大深度
-//            maxDepth = Math.max(maxDepth, pair.second);
-//            //记录当前节点所在深度
-//            int curDepth = pair.second;
-//            //当前节点的子节点入栈，同时深度+1
-//            if (node.right != null) {
-//                stack.push(new Pair<>(node.right, curDepth + 1));
-//            }
-//            if (node.left != null) {
-//                stack.push(new Pair<>(node.left, curDepth + 1));
-//            }
-//        }
-//        return maxDepth;
-//    }
+    /**
+     * 判断是否为对称树
+     * @param root
+     * @return
+     */
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null)
+            return true;
+        return isSymmetric(root.left, root.right);
+    }
 
+    public boolean isSymmetric(TreeNode left, TreeNode right) {
+        if (left == null && right == null)
+            return true;
+
+        if (left == null || right == null)
+            return false;
+
+        if (left.val != right.val)
+            return false;
+
+        return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+    }
+
+    /**
+     * 是否存在指定target的树路径和
+     * @param root
+     * @param sum
+     * @return
+     */
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null)
+            return false;
+        return checkPathSum(root, 0, sum);
+    }
+
+    private boolean checkPathSum(TreeNode root, int sum, int target) {
+        if (root == null)
+            return false;
+        sum += root.val;
+
+        if (sum == target && root.left == null && root.right == null)
+            return true;
+        return checkPathSum(root.left, sum, target) || checkPathSum(root.right, sum, target);
+    }
+
+//    public TreeNode buildTree(int[] preorder, int[] inorder) {
+//        Map<Integer, Integer> inorderIdxMap = new HashMap<>();
+//
+//        for (int i = 0; i < inorder.length; i++) {
+//            inorderIdxMap.put(inorder[i], i);
+//        }
+//
+//        Queue<Integer> queue = new LinkedList<>();
+//        for (int j = 0; j < preorder.length; j++) {
+//            queue
+//        }
+//
+//    }
 }
