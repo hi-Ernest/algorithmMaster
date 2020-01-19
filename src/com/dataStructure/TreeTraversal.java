@@ -231,4 +231,36 @@ public class TreeTraversal {
 //        }
 //
 //    }
+
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+
+        Map<Integer, Integer> inorderIdxMap = new HashMap<>();
+
+        for (int i = 0; i < inorder.length; i++) {
+            inorderIdxMap.put(inorder[i], i);
+        }
+
+        Queue<Integer> preorderQueue = new LinkedList<>();
+        for (int i = 0; i < preorder.length; i++) {
+            preorderQueue.add(preorder[i]);
+        }
+
+        return buildTree(preorderQueue, 0, preorder.length - 1, inorderIdxMap);
+    }
+
+    public TreeNode buildTree(Queue<Integer> preorderQueue, int left, int right, Map<Integer, Integer> inorderIdxMap) {
+
+        if (left > right || preorderQueue.isEmpty()) {
+            return null;
+        }
+
+        int root = preorderQueue.poll();
+        TreeNode node = new TreeNode(root);
+        int inorderIdx = inorderIdxMap.get(root);
+        node.left = buildTree(preorderQueue, left, inorderIdx - 1, inorderIdxMap);
+        node.right = buildTree(preorderQueue, inorderIdx + 1, right, inorderIdxMap);
+
+        return node;
+    }
 }
