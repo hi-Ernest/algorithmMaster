@@ -233,6 +233,12 @@ public class TreeTraversal {
 //    }
 
 
+    /**
+     * 前序遍历 + 中序遍历 -> build tree
+     * @param preorder
+     * @param inorder
+     * @return
+     */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
 
         Map<Integer, Integer> inorderIdxMap = new HashMap<>();
@@ -260,6 +266,43 @@ public class TreeTraversal {
         int inorderIdx = inorderIdxMap.get(root);
         node.left = buildTree(preorderQueue, left, inorderIdx - 1, inorderIdxMap);
         node.right = buildTree(preorderQueue, inorderIdx + 1, right, inorderIdxMap);
+
+        return node;
+    }
+
+    /**
+     * 后序遍历 + 中序遍历 -> build tree
+     * @param inorder
+     * @param postorder
+     * @return
+     */
+    public TreeNode buildTree_2(int[] postorder, int[] inorder) {
+
+        Map<Integer, Integer> inorderIdxMap = new HashMap<>();
+
+        for (int i = 0; i < inorder.length; i++) {
+            inorderIdxMap.put(inorder[i], i);
+        }
+
+        Stack<Integer> postorderStack = new Stack<>();
+        for (int i = 0; i < postorder.length; i++) {
+            postorderStack.push(postorder[i]);
+        }
+
+        return buildTree(postorderStack, 0, postorder.length - 1, inorderIdxMap);
+    }
+
+    public TreeNode buildTree(Stack<Integer> postorderStack, int left, int right, Map<Integer, Integer> inorderIdxMap) {
+
+        if (left > right || postorderStack.isEmpty()) {
+            return null;
+        }
+
+        int root = postorderStack.pop();
+        TreeNode node = new TreeNode(root);
+        int inorderIdx = inorderIdxMap.get(root);
+        node.right = buildTree(postorderStack, inorderIdx + 1, right, inorderIdxMap);
+        node.left = buildTree(postorderStack, left, inorderIdx - 1, inorderIdxMap);
 
         return node;
     }
