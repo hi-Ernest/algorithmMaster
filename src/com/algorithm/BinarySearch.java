@@ -3,7 +3,7 @@ package com.algorithm;
 public class BinarySearch {
 
     public static int binarySearch(int[] nums, int target) {
-        int left =0, right = nums.length -1;
+        int left = 0, right = nums.length -1;
         int res = -1;
         while (left <= right) {
             //优化-溢出

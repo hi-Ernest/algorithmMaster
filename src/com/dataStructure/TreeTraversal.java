@@ -29,8 +29,9 @@ public class TreeTraversal {
      */
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
-        if (root == null)
+        if (root == null) {
             return res;
+        }
         return preorderTraversal(root, res);
     }
 
