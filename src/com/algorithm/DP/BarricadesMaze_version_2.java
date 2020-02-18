@@ -1,5 +1,7 @@
 package com.algorithm.DP;
 
+import java.util.Scanner;
+
 public class BarricadesMaze_version_2 {
 
     /**
@@ -28,5 +30,25 @@ public class BarricadesMaze_version_2 {
             }
         }
         return dp[0][0];
+    }
+
+    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//        int row = scanner.nextInt();
+//        int col = scanner.nextInt();
+//
+//        System.out.println(row + " "+ col);
+//
+//        for(int i=0; i<row; i++) {
+//            int x = scanner.nextInt();
+//            int y = scanner.nextInt();
+//        }
+
+        for (int i =0; i<2; i++) {
+            if (i == 1){
+                return;
+            }
+        }
+
     }
 }
