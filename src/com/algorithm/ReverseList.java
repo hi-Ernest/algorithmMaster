@@ -28,4 +28,29 @@ public class ReverseList {
         head.next = null;
         return prev;
     }
+
+
+    /**
+     * O(N)
+     * O(1)
+     * @param head
+     * @return
+     */
+    public Node reverseList_2(Node head) {
+        if (head == null) {
+            return head;
+        }
+
+        Node prev = null;
+        Node cur = head;
+        Node tmp;
+
+        while (cur != null) {
+            tmp = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = tmp;
+        }
+        return prev;
+    }
 }
