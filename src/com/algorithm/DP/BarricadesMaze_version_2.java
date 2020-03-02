@@ -44,11 +44,5 @@ public class BarricadesMaze_version_2 {
 //            int y = scanner.nextInt();
 //        }
 
-        for (int i =0; i<2; i++) {
-            if (i == 1){
-                return;
-            }
-        }
-
     }
 }

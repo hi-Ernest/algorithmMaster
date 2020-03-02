@@ -42,14 +42,19 @@ public class MaxSlidingWindow {
     }
 
     /**
-     * 双端队列
+     * 双端队列 -> deque
+     *
+     * 时间复杂度:O(n)
+     *
      * @param nums
      * @param k
      * @return
      */
-    public int[] maxSlidingWindow_using_deque(int[] nums, int k) {
-        if (nums.length == 0 || nums == null) {
-            return new int[0];
+    public static ArrayList<Integer> maxSlidingWindow_using_deque(int[] nums, int k) {
+        ArrayList<Integer> result = new ArrayList<>();
+
+        if (nums.length == 0 || nums == null || k <= 0) {
+            return result;
         }
 
         int[] res = new int[nums.length - k + 1];
@@ -73,20 +78,42 @@ public class MaxSlidingWindow {
                 res[i - k + 1] = nums[deque.peek()];
             }
         }
+
+        for (Integer item : res) {
+            result.add(item);
+        }
+
+        return result;
+    }
+
+
+    public static ArrayList<Integer> maxSlidingWindow_(int[] nums, int size) {
+        ArrayList<Integer> res = new ArrayList<>();
+
+        if (nums.length == 0 || nums == null || size <= 0) {
+            return res;
+        }
+
+        int index;
+        Deque<Integer> dq = new ArrayDeque<>();
+        for (int i = 0; i < nums.length; i++) {
+            index = i - size + 1;
+            if (dq.isEmpty()) {
+                dq.add(i);
+            }else if (index > dq.peek()) {
+                dq.remove();
+            }
+
+            while (!dq.isEmpty() && nums[dq.peekLast()] < nums[i]) {
+                dq.removeLast();
+            }
+            dq.add(i);
+            if (index >= 0) {
+                res.add(nums[dq.peek()]);
+            }
+        }
+
         return res;
     }
 
-    public static void main(String[] args) {
-        Deque<Integer> deque = new ArrayDeque<>();
-
-        for (int i = 32; i < 100; i++) {
-            deque.add(i);
-        }
-
-        System.out.println(deque.peek());
-
-        while (!deque.isEmpty()) {
-            System.out.println(deque.poll());
-        }
-    }
 }
