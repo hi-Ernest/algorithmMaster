@@ -58,7 +58,6 @@ public class UniquePaths {
 
     /**
      * 有障碍物的情况
-     *
      * @param obstacleGrid
      * @return
      */
@@ -102,8 +101,7 @@ public class UniquePaths {
     }
 
     /**
-     * 更优化：
-     *
+     * 优化
      * @param obstacleGrid
      * @return
      */
