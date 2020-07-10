@@ -23,7 +23,6 @@ public class LRUCache {
 
     HashMap<Integer, Node> map;
     int capacity;
-    int count;
     Node head, tail;
 
     public LRUCache(int capacity) {
@@ -33,53 +32,58 @@ public class LRUCache {
         tail = new Node(0, 0);
         head.next = tail;
         tail.pre = head;
-
-        head.pre = null;
-        tail.next = null;
-        count = 0;
     }
 
-    public void deleteNode(Node node) {
+    /**
+     * 删除指定的node
+     * @param node
+     */
+    public void removeNode(Node node) {
         node.pre.next = node.next;
         node.next.pre = node.pre;
     }
 
     public void addToHead(Node node) {
-        node.next = head.next;
-        head.next.pre = node;
-
-        node.pre = head;
+        Node headNext = head.next;
         head.next = node;
+        node.pre = head;
+
+        node.next = headNext;
+        headNext.pre = node;
     }
 
+    /**
+     * GET
+     * @param key
+     * @return
+     */
     public int get(int key) {
-        if (map.get(key) != null) {
-            Node node = map.get(key);
-            int result = node.value;
-            deleteNode(node);
-            addToHead(node);
-            return result;
+        if (!map.containsKey(key)) {
+            return -1;
         }
-        return -1;
+        Node node = map.get(key);
+        int result = node.value;
+        removeNode(node);
+        addToHead(node);
+        return result;
     }
 
     public void put(int key, int value) {
-        if (map.get(key) != null) {
-            Node node = map.get(key);
-            int result = node.value;
-            deleteNode(node);
-            addToHead(node);
-        }else {
+        if (!map.containsKey(key)) {
+            if (map.size() == capacity) {
+                if (tail.pre != head) {
+                    map.remove(tail.pre.key);
+                    removeNode(tail.pre);
+                }
+            }
             Node node = new Node(key, value);
             map.put(key, node);
-            if (count < capacity) {
-                count++;
-                addToHead(node);
-            }else {
-                map.remove(tail.pre.key);
-                deleteNode(tail.pre);
-                addToHead(node);
-            }
+            addToHead(node);
+        }else {
+            Node node = map.get(key);
+            node.value = value;
+            removeNode(node);
+            addToHead(node);
         }
     }
 }
