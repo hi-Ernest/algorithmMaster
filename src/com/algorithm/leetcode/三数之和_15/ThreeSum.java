@@ -1,4 +1,4 @@
-package com.algorithm.leetcode.三数之和;
+package com.algorithm.leetcode.三数之和_15;
 
 import java.util.*;
 

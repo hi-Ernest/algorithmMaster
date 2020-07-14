@@ -15,6 +15,7 @@ public class DailyTemperatures {
      * 暴力解法
      * time:O(nm)
      * space:O(n)
+     *
      * @param T
      * @return
      */
@@ -44,6 +45,8 @@ public class DailyTemperatures {
 
     /**
      * 使用栈
+     * time:O(n)
+     * space:O(n)
      *
      * @param T
      * @return
