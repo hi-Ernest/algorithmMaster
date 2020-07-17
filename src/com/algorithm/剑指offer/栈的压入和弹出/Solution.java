@@ -13,41 +13,53 @@ import java.util.Stack;
 public class Solution {
 
     public boolean IsPopOrder(int [] pushA,int [] popA) {
-        if (pushA == null || pushA.length == 0 || popA == null || popA.length == 0) {
+        if (pushA == null || pushA.length == 0 || popA == null || popA.length == 0
+                || pushA.length != popA.length) {
             return false;
         }
 
         Deque<Integer> stack = new ArrayDeque<>();
-        int startValue = popA[0];
-        int startIndex = 0;
-        while (startIndex != popA.length) {
-            if (popA[startIndex] == startValue) {
+        Integer startValue = popA[0];
+        Integer startIndex = 0;
+        while (startIndex != pushA.length) {
+            stack.addLast(pushA[startIndex]);
+            if (pushA[startIndex] == startValue) {
+                stack.removeLast();
                 break;
             }
             startIndex++;
         }
-//        for (int i = 0; i < popA.length; i++) {
-//            int temp = popA[i];
-//            for (int j = 0; j < pushA.length; j++) {
-//                if (temp == pushA[j]) {
-//                    startIndex = j;
-//                    break;
-//                }
-//                if (startIndex != -1) {
-//                    for (int k = 0; k < startIndex; k++) {
-//                        stack.addLast(pushA[k]);
-//                    }
-//                }else {
-//                    return false;
-//                }
-//
-//            }
-//        }
+
+        int popAStartIndex = 1;
+        startIndex++;
+        while (popAStartIndex < popA.length) {
+            if (popA[popAStartIndex] == stack.peekLast()) {
+                stack.removeLast();
+                popAStartIndex++;
+            }else {
+                if (startIndex < pushA.length) {
+                    stack.addLast(pushA[startIndex]);
+                    startIndex++;
+                }else {
+                    break;
+                }
+            }
+        }
+
+        if (!stack.isEmpty()) {
+            return false;
+        }
         return true;
     }
 
+    public static void main(String[] args) {
+        System.out.println(new Solution().IsPopOrder(new int[]{1,2,3,4,5}, new int[]{4,3,5,1,2}));
+        System.out.println(new Solution().IsPopOrder(new int[]{1,2,3,4,5}, new int[]{4,5,3,2,1}));
+    }
+
     public boolean IsPopOrder2(int [] pushA,int [] popA) {
-        if(pushA == null || popA == null || pushA.length == 0 || popA.length == 0 || pushA.length != popA.length) return false;
+        if(pushA == null || popA == null || pushA.length == 0
+                || popA.length == 0 || pushA.length != popA.length) return false;
         Stack<Integer> st = new Stack<Integer>();
         int i = 0;
         int j = 0;
