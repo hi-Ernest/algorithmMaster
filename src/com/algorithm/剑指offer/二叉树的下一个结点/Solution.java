@@ -17,22 +17,23 @@ public class Solution {
         }
     }
 
-    public TreeLinkNode GetNext(TreeLinkNode node)
-    {
-        if(node==null)return null;
-        if(node.right!=null)
-        {
-            node=node.right;
-            while(node.left!=null)
-            {
-                node=node.left;
-
-            }return node;
+    public TreeLinkNode GetNext(TreeLinkNode node) {
+        if (node == null) {
+            return null;
         }
-        while(node.next!=null)
-        {
-            if(node.next.left==node)return node.next;
-            node=node.next;
+
+        if (node.right != null) {
+            node = node.right;
+            while (node.left != null) {
+                node = node.left;
+            }
+            return node;
+        }
+        while (node.next != null) {
+            if (node.next.left == node) {
+                return node.next;
+            }
+            node = node.next;
         }
         return null;
     }
