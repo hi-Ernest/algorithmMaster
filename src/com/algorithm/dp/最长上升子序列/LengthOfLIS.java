@@ -13,8 +13,9 @@ public class LengthOfLIS {
 
     /**
      * 连续LIS
-     * 时间复杂度：O(N)
-     * 空间复杂度：O(1)
+     * time：O(N)
+     * space：O(1)
+     *
      * @param nums
      * @return
      */
@@ -26,10 +27,10 @@ public class LengthOfLIS {
         int cnt = 1;
         int res = 1;
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > nums[i-1]) {
+            if (nums[i] > nums[i - 1]) {
                 cnt++;
                 res = Math.max(res, cnt);
-            }else {
+            } else {
                 cnt = 1;
             }
         }
@@ -37,11 +38,11 @@ public class LengthOfLIS {
     }
 
 
-
     /**
      * leetcode[300]
-     * 时间复杂度：O(N^2)
-     * 空间复杂度：O(N)
+     * time：O(N^2)
+     * space：O(N)
+     *
      * @param nums
      * @return
      */
@@ -52,7 +53,7 @@ public class LengthOfLIS {
         int res = 1;
         int[] dp = new int[nums.length];
 
-        for (int i = 0; i<dp.length; i++) {
+        for (int i = 0; i < dp.length; i++) {
             dp[i] = 1;
         }
 
@@ -68,7 +69,8 @@ public class LengthOfLIS {
     }
 
     /**
-     * 时间复杂度：O(N * logN)
+     * time：O(N * logN)
+     *
      * @param nums
      * @return
      */
@@ -81,9 +83,9 @@ public class LengthOfLIS {
         res.add(nums[0]);
 
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > res.get(res.size()-1)) {
+            if (nums[i] > res.get(res.size() - 1)) {
                 res.add(nums[i]);
-            }else {
+            } else {
                 int position = binarySearch(res, nums[i]);
                 res.set(position, nums[i]);
             }
@@ -100,9 +102,9 @@ public class LengthOfLIS {
             mid = left + (right - left) / 2;
             if (res.get(mid) < target) {
                 left = mid + 1;
-            }else if (res.get(mid) > target) {
+            } else if (res.get(mid) > target) {
                 right = mid - 1;
-            }else {
+            } else {
                 return mid;
             }
         }

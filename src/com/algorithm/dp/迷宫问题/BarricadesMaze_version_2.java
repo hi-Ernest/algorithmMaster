@@ -4,6 +4,7 @@ public class BarricadesMaze_version_2 {
 
     /**
      * 时间复杂度：O(row * col)
+     *
      * @param grid
      * @param row
      * @param col

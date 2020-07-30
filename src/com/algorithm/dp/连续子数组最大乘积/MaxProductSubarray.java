@@ -2,20 +2,20 @@ package com.algorithm.dp.连续子数组最大乘积;
 
 /**
  * leetcode[152]
- *
+ * <p>
  * Input: [2,3,-2,4]
  * Output: 6
  * Explanation: [2,3] has the largest product 6.
- *
+ * <p>
  * Input: [-2,0,-1]
  * Output: 0
  * Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
- *
  */
 public class MaxProductSubarray {
 
     /**
      * 暴力 O(N^2)
+     *
      * @param nums
      * @return
      */
@@ -30,7 +30,7 @@ public class MaxProductSubarray {
             for (int j = i; j < len; j++) {
                 if (i == j) {
                     cur = nums[i];
-                }else {
+                } else {
                     cur = cur * nums[j];
                 }
                 res = Math.max(res, cur);
@@ -41,6 +41,7 @@ public class MaxProductSubarray {
 
     /**
      * 动态规划
+     *
      * @param nums
      * @return
      */
@@ -63,6 +64,7 @@ public class MaxProductSubarray {
 
     /**
      * 优化
+     *
      * @param nums
      * @return
      */
@@ -71,7 +73,7 @@ public class MaxProductSubarray {
             return 0;
         }
 
-        int res  = nums[0];
+        int res = nums[0];
         int curMax = res;
         int curMin = res;
 

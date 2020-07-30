@@ -7,6 +7,7 @@ public class NQueens {
     /**
      * leetcode[51]
      * dfs
+     *
      * @param n
      * @return
      */
@@ -22,7 +23,7 @@ public class NQueens {
     }
 
     private void dfs(int level, int n, Set<Integer> pie, Set<Integer> na,
-                                HashSet<Integer> col, List<List<String>> res, ArrayList<String> tempList) {
+                     HashSet<Integer> col, List<List<String>> res, ArrayList<String> tempList) {
         if (level > n - 1) {
             if (tempList.size() == n) {
                 List<String> result = new ArrayList<>(tempList);
@@ -61,7 +62,7 @@ public class NQueens {
         for (int i = 0; i < n; i++) {
             if (i == j) {
                 stringBuilder.append("Q");
-            }else {
+            } else {
                 stringBuilder.append(".");
             }
         }
@@ -73,6 +74,7 @@ public class NQueens {
     /**
      * leetcode[52] -> 求有几种满足条件的方案
      * 使用位运算
+     *
      * @param n
      * @return
      */
@@ -106,10 +108,10 @@ public class NQueens {
         NQueens nQueens = new NQueens();
 //        System.out.println(nQueens.solveNQueens(4));
         List<List<String>> res = nQueens.solveNQueens(4);
-        for (int i=0; i<res.size(); i++) {
+        for (int i = 0; i < res.size(); i++) {
             List<String> temp = res.get(i);
             System.out.print("[");
-            for (int j =0; j<temp.size(); j++) {
+            for (int j = 0; j < temp.size(); j++) {
                 System.out.println(temp.get(j));
             }
             System.out.println("]");

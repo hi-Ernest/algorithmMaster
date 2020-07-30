@@ -3,14 +3,14 @@ package com.algorithm.dp;
 /**
  * create by Ernest on 2020/2/6.
  * 并查集优化
- *  1）将秩少的加入作为子节点
- *  2）路径压缩
+ * 1）将秩少的加入作为子节点
+ * 2）路径压缩
  */
 public class QuickUnionUF {
     private int[] roots;
 
     public QuickUnionUF(int n) {
-        roots = new int [n];
+        roots = new int[n];
         for (int i = 0; i < n; i++) {
             roots[i] = i;
         }
@@ -18,6 +18,7 @@ public class QuickUnionUF {
 
     /**
      * 路径压缩
+     *
      * @param i
      * @return
      */

@@ -7,12 +7,12 @@ import java.util.*;
  * [0,0]
  * [1,0] [1,1]
  * [2.0] [2.1] [2.2]
- *
+ * <p>
  * [
- *      [2],
- *     [3,4],
- *    [6,5,7],
- *   [4,1,8,3]
+ * [2],
+ * [3,4],
+ * [6,5,7],
+ * [4,1,8,3]
  * ]
  * The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
  * leetcode[120]
@@ -25,7 +25,7 @@ public class TheMinimumPathOfAtriangle {
         }
 
         for (int i = triangle.size() - 2; i >= 0; i--) {
-            for (int j = triangle.get(i).size() - 1; j>= 0; j--) {
+            for (int j = triangle.get(i).size() - 1; j >= 0; j--) {
                 int min = Math.min(triangle.get(i + 1).get(j), triangle.get(i + 1).get(j + 1));
                 min += triangle.get(i).get(j);
                 triangle.get(i).set(j, min);
@@ -36,6 +36,7 @@ public class TheMinimumPathOfAtriangle {
 
     /**
      * 优化
+     *
      * @param triangle
      * @return
      */
@@ -52,19 +53,23 @@ public class TheMinimumPathOfAtriangle {
     }
 
 
-     class TreeNode {
-          int val;
-           TreeNode left;
-          TreeNode right;
-          TreeNode(int x) { val = x; }
-     }
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
 
     /**
      * 思维变换 -> 可看作二叉树的，转变求以下问题：
-     *
+     * <p>
      * 给定一个二叉树和一个目标和
      * 判断该树中是否存在根节点到叶子节点的路径
      * 这条路径上所有节点值相加等于目标和。
+     *
      * @param root
      * @param sum
      * @return
