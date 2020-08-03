@@ -1,5 +1,8 @@
 package com.algorithm.leetcode.反转链表;
 
+/**
+ * 反转链表
+ */
 public class ReverseList {
 
     class Node {
@@ -32,8 +35,9 @@ public class ReverseList {
 
 
     /**
-     * O(N)
-     * O(1)
+     * time:O(N)
+     * space:O(1)
+     *
      * @param head
      * @return
      */

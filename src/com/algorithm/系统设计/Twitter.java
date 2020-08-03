@@ -59,6 +59,7 @@ public class Twitter {
 
     /**
      * user 发表一条 tweet 动态
+     *
      * @param userId
      * @param tweetId
      */
@@ -71,6 +72,7 @@ public class Twitter {
 
     /**
      * follower 关注 followee
+     *
      * @param followerId
      * @param followeeId
      */
@@ -86,6 +88,7 @@ public class Twitter {
 
     /**
      * follower 取关 followee，如果 Id 不存在则什么都不做
+     *
      * @param followerId
      * @param followeeId
      */
@@ -99,10 +102,10 @@ public class Twitter {
     /**
      * 返回该 user 关注的人（包括他自己）最近的动态 id，
      * 最多 10 条，而且这些动态必须按从新到旧的时间线顺序排列。
-     *
+     * <p>
      * 算法分析：
-     *      合并有序的K个有序链表 -> （优先队列）PriorityQueue 二叉堆
-     *                              对插入元素进行自动排序
+     * 合并有序的K个有序链表 -> （优先队列）PriorityQueue 二叉堆
+     * 对插入元素进行自动排序
      *
      * @param userId
      * @return
@@ -117,12 +120,12 @@ public class Twitter {
         PriorityQueue<Tweet> queue = new PriorityQueue<>(followers.size(), (a, b) -> (b.time - a.time));
 
         for (int uid : followers) {
-          Tweet tweet = userMap.get(uid).head;
-          if (tweet == null) {
-              continue;
-          }
-          //添加所有关注者头部节点，即各个关注者最新的时间
-          queue.add(tweet);
+            Tweet tweet = userMap.get(uid).head;
+            if (tweet == null) {
+                continue;
+            }
+            //添加所有关注者头部节点，即各个关注者最新的时间
+            queue.add(tweet);
         }
 
         while (!queue.isEmpty()) {
