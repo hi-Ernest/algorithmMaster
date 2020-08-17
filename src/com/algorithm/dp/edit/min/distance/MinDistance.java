@@ -1,4 +1,4 @@
-package com.algorithm.dp.最少编辑距离;
+package com.algorithm.dp.edit.min.distance;
 
 /**
  * @author Ernest Chen
@@ -8,7 +8,7 @@ package com.algorithm.dp.最少编辑距离;
  * leetcode[72]
  * Input: word1 = "horse", word2 = "ros"
  * Output: 3
- *
+ * <p>
  * Explanation:
  * horse -> rorse (replace 'h' with 'r')
  * rorse -> rose (remove 'r')
@@ -23,7 +23,7 @@ public class MinDistance {
         char[] w2 = word2.toCharArray();
 
         int[][] dp = new int[word1.length() + 1]
-                            [word2.length() + 1];
+                                [word2.length() + 1];
 
         for (int i = 0; i < word1.length() + 1; i++) {
             dp[i][0] = i;

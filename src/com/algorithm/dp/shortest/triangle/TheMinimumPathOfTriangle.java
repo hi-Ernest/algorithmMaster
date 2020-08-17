@@ -1,4 +1,4 @@
-package com.algorithm.dp.最短三角形路径和;
+package com.algorithm.dp.shortest.triangle;
 
 import java.util.*;
 
@@ -16,15 +16,19 @@ import java.util.*;
  * ]
  * The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
  * leetcode[120]
+ *
+ * @author chenhuarui
  */
-public class TheMinimumPathOfAtriangle {
+public class TheMinimumPathOfTriangle {
+
+    private static final int GLOBAL_TWO = 2;
 
     public int minimumTotal_(List<List<Integer>> triangle) {
         if (triangle.size() == 0) {
             return 0;
         }
 
-        for (int i = triangle.size() - 2; i >= 0; i--) {
+        for (int i = triangle.size() - GLOBAL_TWO; i >= 0; i--) {
             for (int j = triangle.get(i).size() - 1; j >= 0; j--) {
                 int min = Math.min(triangle.get(i + 1).get(j), triangle.get(i + 1).get(j + 1));
                 min += triangle.get(i).get(j);

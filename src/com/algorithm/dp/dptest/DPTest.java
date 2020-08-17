@@ -1,6 +1,6 @@
 package com.algorithm.dp.dptest;
 
-import com.algorithm.dp.最短三角形路径和.TheMinimumPathOfAtriangle;
+import com.algorithm.dp.shortest.triangle.TheMinimumPathOfTriangle;
 
 import java.util.*;
 
@@ -27,7 +27,7 @@ public class DPTest {
 
         System.out.println(triangle);
 
-        TheMinimumPathOfAtriangle tmpoa = new TheMinimumPathOfAtriangle();
+        TheMinimumPathOfTriangle tmpoa = new TheMinimumPathOfTriangle();
 //        System.out.println(tmpoa.minimumtotal(triangle));
 
     }

@@ -1,18 +1,20 @@
-package com.algorithm.dp.最长上升子序列;
+package com.algorithm.dp.longest.sublist;
 
 import java.util.*;
 
 /**
- * 最长上升子序列
- * 输入: [10,9,2,5,3,7,101,18]
- * 输出: 4
- * 解释: 最长的上升子序列是 [2,3,7,101]，它的长度是 4
+ * Longest ascending subsequence
+ * input: [10,9,2,5,3,7,101,18]
+ * output: 4
+ * explain: result = [2,3,7,101]，length = 4
+ *
+ * @author chenhuarui
  */
-public class LengthOfLIS {
+public class LengthOfLis {
 
 
     /**
-     * 连续LIS
+     * Continuous LIS
      * time：O(N)
      * space：O(1)
      *
@@ -46,16 +48,15 @@ public class LengthOfLIS {
      * @param nums
      * @return
      */
-    public int lengthOfLIS(int[] nums) {
-        if (nums.length == 0)
+    public int lengthOfLis(int[] nums) {
+        if (nums.length == 0) {
             return 0;
+        }
 
         int res = 1;
         int[] dp = new int[nums.length];
 
-        for (int i = 0; i < dp.length; i++) {
-            dp[i] = 1;
-        }
+        Arrays.fill(dp, 1);
 
         for (int i = 1; i < dp.length; i++) {
             for (int j = 0; j < i; j++) {
@@ -74,7 +75,7 @@ public class LengthOfLIS {
      * @param nums
      * @return
      */
-    public int lengthOfLIS_binary(int[] nums) {
+    public int lengthOfLisBinary(int[] nums) {
         if (nums == null | nums.length == 0) {
             return 0;
         }
@@ -110,8 +111,4 @@ public class LengthOfLIS {
         }
         return left;
     }
-
-//    public static void main(String[] args) {
-//        System.out.println(new LengthOfLIS().lengthOfLIS_binary(new int[]{10,9,2,5,3,7}));
-//    }
 }

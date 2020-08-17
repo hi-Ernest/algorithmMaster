@@ -1,11 +1,14 @@
-package com.algorithm.dp.迷宫问题;
+package com.algorithm.dp.maze.problem;
 
+/**
+ * @author chenhuarui
+ */
 public class BarricadesMaze {
 
     /**
-     * 递归求解
-     * false -> 石头
-     * true -> 终点
+     * recursive
+     * false -> Stone
+     * true -> Victory points
      *
      * @param grid
      * @param row
@@ -13,10 +16,12 @@ public class BarricadesMaze {
      * @return
      */
     public int countPathsOfMaze(boolean[][] grid, int row, int col) {
-        if (!validSquare(grid, row, col))
+        if (!validSquare(grid, row, col)) {
             return 0;
-        if (isAtEnd(grid, row, col))
+        }
+        if (isAtEnd(grid, row, col)) {
             return 1;
+        }
         return countPathsOfMaze(grid, row + 1, col) + countPathsOfMaze(grid, row, col + 1);
     }
 
@@ -29,7 +34,7 @@ public class BarricadesMaze {
     }
 
     /**
-     * DP问题 ==> 时间复杂度：O(row * col)
+     * DP problem ==> Time complexity：O(row * col)
      *
      * @param grid
      * @param row
@@ -41,8 +46,9 @@ public class BarricadesMaze {
 
         //初始化 ==> 只有一条路径到END
         //最后一行
-        for (int s = 0; s < dp[row - 1].length; s++)
+        for (int s = 0; s < dp[row - 1].length; s++) {
             dp[row - 1][s] = 1;
+        }
 
         //最后一列
         for (int t = 0; t < dp.length; t++) {

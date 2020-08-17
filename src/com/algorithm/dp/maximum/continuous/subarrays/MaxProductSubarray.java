@@ -1,4 +1,4 @@
-package com.algorithm.dp.连续子数组最大乘积;
+package com.algorithm.dp.maximum.continuous.subarrays;
 
 /**
  * leetcode[152]
@@ -10,16 +10,18 @@ package com.algorithm.dp.连续子数组最大乘积;
  * Input: [-2,0,-1]
  * Output: 0
  * Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
+ *
+ * @author chenhuarui
  */
 public class MaxProductSubarray {
 
     /**
-     * 暴力 O(N^2)
+     * time: O(N^2)
      *
      * @param nums
      * @return
      */
-    public int maxProduct_violence(int[] nums) {
+    public int maxProductViolence(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -48,12 +50,14 @@ public class MaxProductSubarray {
     public int maxProduct(int[] nums) {
         //一维表示数组的长度
         //二维：0 -正数最大值 1-负数最大值
-        int[][] dp = new int[2][2];//不需要申请nums.length长数组 -> 滚动数组
+        //不需要申请nums.length长数组 -> 滚动数组
+        int[][] dp = new int[2][2];
         int res = dp[0][0] = dp[0][1] = nums[0];
 
         for (int i = 1; i < nums.length; i++) {
             int x = i % 2;
-            int y = (i - 1) % 2; //滚动数组 exp：1 0 1 0...
+            //滚动数组 exp：1 0 1 0...
+            int y = (i - 1) % 2;
 
             dp[x][0] = Math.max(Math.max(dp[y][0] * nums[i], dp[y][1] * nums[i]), nums[i]);
             dp[x][1] = Math.min(Math.min(dp[y][0] * nums[i], dp[y][1] * nums[i]), nums[i]);
@@ -63,12 +67,12 @@ public class MaxProductSubarray {
     }
 
     /**
-     * 优化
+     * optimize
      *
      * @param nums
      * @return
      */
-    public int maxProduct_optimize(int[] nums) {
+    public int maxProductOptimize(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -83,7 +87,7 @@ public class MaxProductSubarray {
             curMax = Math.max(Math.max(nums[i], nums[i] * curMax), nums[i] * curMin);
             curMin = Math.min(Math.min(nums[i], nums[i] * curMin), nums[i] * tmp);
 
-            res = curMax > res ? curMax : res;
+            res = Math.max(curMax, res);
         }
         return res;
     }

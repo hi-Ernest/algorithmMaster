@@ -1,4 +1,4 @@
-package com.algorithm.dp.迷宫问题;
+package com.algorithm.dp.maze.problem;
 
 public class BarricadesMaze_version_2 {
 
