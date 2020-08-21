@@ -8,10 +8,10 @@ public class BuyAndSellStocks {
     private static final int NUM_TWO = 2;
 
     /**
-     * 在规定的买卖股票交易次数中 -> 求最大利润 Max = {dp[n-1, {0...k}, 0]}
+     * In the prescribed number of stock transactions ->  max profit: Max = {dp[n-1, {0...k}, 0]}
      *
-     * @param prices  各只股票价值
-     * @param tNumber 最多交易的次数
+     * @param prices  the value of each stock
+     * @param tNumber number of transaction
      * @return
      */
     public int maxProfit(int[] prices, int tNumber) {
@@ -19,22 +19,22 @@ public class BuyAndSellStocks {
             return 0;
         }
 
-        //使用贪心算法 -> 不然解题Java内存不够
+        //use the greedy algorithm or I'm going to run out of memory
         if (tNumber > prices.length >> NUM_TWO) {
             return greedy(prices);
         }
 
         int[][][] dp = new int[prices.length][tNumber + 1][2];
 
-        //初始化：把第一天买 or 卖情况交代
+        //initialize：account for the first day of buying or selling
         for (int k = 0; k <= tNumber; k++) {
             dp[0][k][0] = 0;
             dp[0][k][1] = -prices[0];
         }
 
-        // i：第i天
-        // j：手上是否有股票(0 or 1)
-        // k：已经交易的次数
+        // i：the first day
+        // j：do you have stock(0 or 1)
+        // k：the number of trades that have been made
         for (int i = 1; i < prices.length; i++) {
             for (int k = 0; k <= tNumber; k++) {
                 dp[i][k][0] = k != 0 ? Math.max(dp[i - 1][k][0], dp[i - 1][k - 1][1] + prices[i]) : dp[i - 1][k][0];

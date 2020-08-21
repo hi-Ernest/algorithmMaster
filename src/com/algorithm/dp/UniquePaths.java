@@ -3,19 +3,16 @@ package com.algorithm.dp;
 import java.util.Arrays;
 
 /**
- * create by Ernest on 2020/3/2.
+ * @author Ernest on 2020/3/2.
  */
 public class UniquePaths {
 
     /**
-     * 无障碍物情况
+     * No obstruction condition
      * <p>
-     * 时间复杂度：O(m * n)
-     * 空间复杂度：O(m * n)
+     * time：O(m * n)
+     * space：O(m * n)
      *
-     * @param m
-     * @param n
-     * @return
      */
     public int uniquePaths(int m, int n) {
         int[][] dp = new int[m][n];
@@ -58,7 +55,7 @@ public class UniquePaths {
 
 
     /**
-     * 有障碍物的情况
+     * In the case of obstructions
      *
      * @param obstacleGrid
      * @return
@@ -68,7 +65,7 @@ public class UniquePaths {
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;
 
-        //起始位置就是障碍物则返回0
+        //he starting position is the obstacle and you return 0
         if (obstacleGrid[0][0] == 1) {
             return 0;
         }
@@ -77,14 +74,14 @@ public class UniquePaths {
         dp[0][0] = 1;
 
         for (int i = 1; i < m; i++) {
-            //初始化：出现上一格是障碍物dp[i-1][0] = 0 -> 无障碍物则dp[i-1][0] = 1
+            //initialize：The last grid appears to be an obstacle dp[i-1][0] = 0 -> No obstacle rule dp[i-1][0] = 1
             if (obstacleGrid[i][0] != 1 && dp[i - 1][0] == 1) {
                 dp[i][0] = 1;
             }
         }
 
         for (int j = 1; j < n; j++) {
-            //同上
+            //Same as above
             if (obstacleGrid[0][j] != 1 && dp[0][j - 1] == 1) {
                 dp[0][j] = 1;
             }
@@ -103,12 +100,9 @@ public class UniquePaths {
     }
 
     /**
-     * 优化
-     *
-     * @param obstacleGrid
-     * @return
+     * optimize
      */
-    public int uniquePathsWithObstacles_(int[][] obstacleGrid) {
+    public int uniquePathsWithObstaclesOptimize(int[][] obstacleGrid) {
         int width = obstacleGrid[0].length;
         int[] dp = new int[width];
         dp[0] = 1;
