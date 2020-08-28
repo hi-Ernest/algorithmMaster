@@ -9,10 +9,8 @@ public class UniquePaths {
 
     /**
      * No obstruction condition
-     * <p>
      * time：O(m * n)
      * space：O(m * n)
-     *
      */
     public int uniquePaths(int m, int n) {
         int[][] dp = new int[m][n];
@@ -34,7 +32,7 @@ public class UniquePaths {
     }
 
 
-    public int uniquePaths_(int m, int n) {
+    public int uniquePathsOptimize(int m, int n) {
         int[][] dp = new int[m][n];
 
         for (int i = 0; i < m; i++) {
@@ -56,7 +54,6 @@ public class UniquePaths {
 
     /**
      * In the case of obstructions
-     *
      * @param obstacleGrid
      * @return
      */

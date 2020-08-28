@@ -1,4 +1,4 @@
-package com.algorithm.leetcode.N皇后问题;
+package com.algorithm.leetcode.n.queens;
 
 import java.util.*;
 

@@ -39,7 +39,7 @@ public class TheMinimumPathOfTriangle {
     }
 
     /**
-     * 优化
+     * optimize
      *
      * @param triangle
      * @return
