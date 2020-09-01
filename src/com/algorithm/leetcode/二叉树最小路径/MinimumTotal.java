@@ -23,7 +23,7 @@ public class MinimumTotal {
         return triangle.get(0).get(0);
     }
 
-    public int minimumTotal_2(List<List<Integer>> triangle) {
+    public int minimumTotal2(List<List<Integer>> triangle) {
         int[] dp = new int[triangle.size() + 1];
 
         for (int i = triangle.size() - 2; i >= 0; i--) {
@@ -32,35 +32,6 @@ public class MinimumTotal {
             }
         }
         return dp[triangle.size()];
-    }
-
-
-    /**
-     * 使用递归 -> 超时时间限制
-     * @param triangle
-     * @param i
-     * @param j
-     * @param path
-     * @param sum
-     */
-    private void dfs(List<List<Integer>> triangle, int i, int j, String path, int sum) {
-
-        //terminator
-        if (i == triangle.size()) {
-//            System.out.println(path + " sum: " + sum);
-            min = Math.min(min, sum);
-            return;
-        }
-
-        //process
-        sum += triangle.get(i).get(j);
-
-        //drill down
-        dfs(triangle, i + 1, j, path, sum);
-        dfs(triangle, i + 1, j + 1, path, sum);
-
-        //clear states
-        //note: no need to clear up the state 'path'
     }
 
 
