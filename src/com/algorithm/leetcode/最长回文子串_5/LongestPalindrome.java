@@ -1,7 +1,8 @@
 package com.algorithm.leetcode.最长回文子串_5;
 
 /**
- * create by Ernest on 2020/4/10.
+ * @author Ernest
+ * @date 2020/4/10.
  */
 public class LongestPalindrome {
 

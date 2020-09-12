@@ -1,7 +1,11 @@
 package com.algorithm.leetcode.有效括号;
+
 import java.util.*;
 
-public class EffectiveBracktets {
+/**
+ * @author chenhuarui
+ */
+public class EffectiveBrackets {
 
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();

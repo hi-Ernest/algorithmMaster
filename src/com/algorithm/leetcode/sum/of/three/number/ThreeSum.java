@@ -4,16 +4,15 @@ import java.util.*;
 
 /**
  * @author chenhuarui
+ * leetcode[15]
  */
 public class ThreeSum {
 
+    private static final int NUM_TREE = 3;
 
     /**
-     * tree loop O(N^3)
+     * three loop O(N^3)
      * map or set t:O(N^2) s:O(N)
-     *
-     * @param nums
-     * @return
      */
     public List<List<Integer>> threeSum(int[] nums) {
         Map<Integer, Integer> hashMap = new HashMap<>();
@@ -32,13 +31,19 @@ public class ThreeSum {
         return new ArrayList<>(hashSet);
     }
 
+    public static void main(String[] args) {
+        int[] nums = {2, 3, -1, -2};
+        System.out.println( new ThreeSum().threeSum(nums));
+
+    }
+
     /**
      * no space is needed
      */
     public List<List<Integer>> threeSumOptimize(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         int len = nums.length;
-        if (len < 3) {
+        if (len < NUM_TREE) {
             return res;
         }
 
@@ -51,25 +56,25 @@ public class ThreeSum {
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-            int l = i + 1;
-            int r = len - 1;
+            int left = i + 1;
+            int right = len - 1;
 
-            while (l < r) {
-                int sum = nums[i] + nums[l] + nums[r];
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
                 if (sum == 0) {
-                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));
-                    while (l < r && nums[l] == nums[l + 1]) {
-                        l++;
+                    res.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    while (left < right && nums[left] == nums[left + 1]) {
+                        left++;
                     }
-                    while (l < r && nums[r] == nums[r - 1]) {
-                        r--;
+                    while (left < right && nums[right] == nums[right - 1]) {
+                        right--;
                     }
-                    l++;
-                    r--;
+                    left++;
+                    right--;
                 } else if (sum < 0) {
-                    l++;
+                    left++;
                 } else {
-                    r--;
+                    right--;
                 }
             }
         }

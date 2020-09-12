@@ -1,32 +1,39 @@
 package com.algorithm.leetcode.实现平方根;
 
+/**
+ * @author chenhuarui
+ */
 public class Sqrt {
 
-    //1.二分法
+    /**
+     * 二分法
+     */
     public static double sqrt(double x) {
         if (x == 1 || x == 0) {
             return x;
         }
 
-        double l = 0, r = x;
+        double left = 0, right = x;
         double res = 0;
 
-        while (l <= r) {
-            double m = l + (r - l) / 2;
-            if (m == x / m) {
-                return m;
-            }else if (m > x / m) {
-                r = m - 1;
+        while (left <= right) {
+            double mid = left + (right - left) / 2;
+            if (mid == x / mid) {
+                return mid;
+            }else if (mid > x / mid) {
+                right = mid - 1;
             }else {
-                l = m + 1;
-                res = m;
+                left = mid + 1;
+                res = mid;
             }
         }
         return res;
     }
 
-    //2.牛顿迭代法
-    public static int sqrt_(int x) {
+    /**
+     * 牛顿迭代法
+     */
+    public static int sqrtOptimize(int x) {
         int res = x;
         while (res * res > x) {
             res = (res + x / res) / 2;

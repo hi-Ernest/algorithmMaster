@@ -2,19 +2,20 @@ package com.algorithm.leetcode.n.queens;
 
 import java.util.*;
 
-public class NQueens {
+/**
+ * @author chenhuarui
+ * leetcode[51]
+ */
+public class Queens {
 
     /**
-     * leetcode[51]
      * dfs
-     *
-     * @param n
-     * @return
      */
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> res = new ArrayList<>();
-        if (n == 0)
+        if (n == 0) {
             return res;
+        }
 
         Set<Integer> pie = new HashSet<>();
         Set<Integer> na = new HashSet<>();
@@ -105,7 +106,7 @@ public class NQueens {
     }
 
     public static void main(String[] args) {
-        NQueens nQueens = new NQueens();
+        Queens nQueens = new Queens();
 //        System.out.println(nQueens.solveNQueens(4));
         List<List<String>> res = nQueens.solveNQueens(4);
         for (int i = 0; i < res.size(); i++) {

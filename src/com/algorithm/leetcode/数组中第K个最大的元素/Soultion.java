@@ -7,12 +7,8 @@ package com.algorithm.leetcode.数组中第K个最大的元素;
 class Solution {
 
     /**
-     * time:O(NlogN)
+     * time:O(N*logN)
      * space:O(N)
-     *
-     * @param nums
-     * @param k
-     * @return
      */
     public int findKthLargest(int[] nums, int k) {
         int heapSize = nums.length;

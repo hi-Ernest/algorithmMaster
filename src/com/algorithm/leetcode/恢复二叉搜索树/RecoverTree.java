@@ -3,7 +3,8 @@ package com.algorithm.leetcode.恢复二叉搜索树;
 import java.util.*;
 
 /**
- * create by Ernest on 2020/4/10.
+ * @author chenhuarui
+ * @date 2020/4/10.
  *
  * leetcode[99]
  * 二叉搜索树（BST）的两个元素被错误交换。 恢复树而不更改其结构。
@@ -20,8 +21,10 @@ public class RecoverTree {
         }
     }
 
-    //因为使用中序遍历，pre记录上一个节点，与当前节点比较val -> 找出错位节点
-    //使用first和second节点存储BST中错位的两个节点，最后交换两者的val
+    /**
+     * 因为使用中序遍历，pre记录上一个节点，与当前节点比较val -> 找出错位节点
+     * 使用first和second节点存储BST中错位的两个节点，最后交换两者的val
+     */
     TreeNode pre = null, first = null, second = null;
     public void recoverTree(TreeNode root) {
         if (root == null) {
@@ -58,10 +61,6 @@ public class RecoverTree {
     }
 
 
-    /**
-     *
-     * @param root
-     */
     public void recoverTree_none_recursive(TreeNode root) {
         TreeNode pre = null, first = null, second = null;
         Deque<TreeNode> stack = new LinkedList<TreeNode>();

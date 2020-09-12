@@ -1,7 +1,7 @@
 package com.algorithm.leetcode.反转链表;
 
 /**
- * 反转链表
+ * @author chenhuarui
  */
 public class ReverseList {
 
@@ -16,7 +16,7 @@ public class ReverseList {
 
     public Node reverseList(Node head) {
         if (head == null) {
-            return head;
+            return null;
         }
 
         Node prev = head;
@@ -37,13 +37,10 @@ public class ReverseList {
     /**
      * time:O(N)
      * space:O(1)
-     *
-     * @param head
-     * @return
      */
-    public Node reverseList_2(Node head) {
+    public Node reverseListOptimize(Node head) {
         if (head == null) {
-            return head;
+            return null;
         }
 
         Node prev = null;

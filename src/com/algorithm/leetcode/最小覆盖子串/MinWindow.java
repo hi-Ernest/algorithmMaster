@@ -3,7 +3,8 @@ package com.algorithm.leetcode.最小覆盖子串;
 import java.util.HashMap;
 
 /**
- * create by Ernest on 2020/4/13.
+ * @author chenhuarui
+ * @date 2020/4/13.
  */
 public class MinWindow {
 
@@ -18,19 +19,19 @@ public class MinWindow {
         int left = 0, right = 0;
         int match = 0;
 
-        char[] charst = t.toCharArray();
-        for (Character c : charst) {
+        char[] chars = t.toCharArray();
+        for (Character c : chars) {
             Integer num = needs.get(c);
             needs.put(c, num == null ? 1 : num + 1);
         }
 
-        char[] charss = s.toCharArray();
+        char[] chars2 = s.toCharArray();
         while (right < s.length()) {
-            char rc = charss[right];
+            char rc = chars2[right];
             if (needs.containsKey(rc)) {
                 Integer num = window.get(rc);
                 window.put(rc, num == null ? 1 : num + 1);
-                if (needs.get(rc) == window.get(rc)) {
+                if (needs.get(rc).equals(window.get(rc))) {
                     //字符 rc 的出现次数符合要求了
                     match++;
                 }
@@ -45,7 +46,7 @@ public class MinWindow {
                     minlen = right - left;
                     end = right;
                 }
-                char lc = charss[left];
+                char lc = chars2[left];
                 if (needs.containsKey(lc)) {
                     Integer num = window.get(lc);
                     window.put(lc, num - 1);

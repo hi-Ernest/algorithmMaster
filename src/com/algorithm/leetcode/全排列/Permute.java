@@ -3,20 +3,9 @@ package com.algorithm.leetcode.全排列;
 import java.util.*;
 
 /**
- * create by Ernest on 2020/4/12.
- * <p>
+ * @author chenhuarui
+ * @date 2020/4/12.
  * leetcode[46]
- * ex:
- * Input: [1,2,3]
- * Output:
- * [
- * [1,2,3],
- * [1,3,2],
- * [2,1,3],
- * [2,3,1],
- * [3,1,2],
- * [3,2,1]
- * ]
  */
 public class Permute {
     List<List<Integer>> res = new LinkedList<>();
@@ -27,21 +16,27 @@ public class Permute {
         return res;
     }
 
-    //回溯
+    /**
+     *  回溯
+     */
     public void backTrack(int[] nums, LinkedList<Integer> track) {
         if (track.size() == nums.length) {
             res.add(new LinkedList(track));
             return;
         }
 
-        for (int i = 0; i < nums.length; i++) {
-            if (track.contains(nums[i])) {
+        for (int num : nums) {
+            if (track.contains(num)) {
                 continue;
             }
-
-            track.add(nums[i]);
+            track.add(num);
             backTrack(nums, track);
             track.removeLast();
         }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3};
+        new Permute().permute(nums);
     }
 }

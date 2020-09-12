@@ -1,11 +1,12 @@
 package com.algorithm.leetcode.对比版本号;
 
 /**
- * create by Ernest on 2020/2/15.
+ * @author chenhuarui
+ * @date 2020/2/15.
  */
 public class CompareVersion {
 
-    public static int judgTheProblem(String version1, String version2) {
+    public static int judgeTheProblem(String version1, String version2) {
         String[] first = version1.split("\\.");
         String[] second = version2.split("\\.");
 
@@ -34,6 +35,4 @@ public class CompareVersion {
         }
         return 0;
     }
-
-
 }
