@@ -111,4 +111,9 @@ public class LengthOfLis {
         }
         return left;
     }
+
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+    }
+
 }

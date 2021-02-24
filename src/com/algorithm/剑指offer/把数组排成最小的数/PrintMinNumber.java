@@ -31,4 +31,33 @@ public class PrintMinNumber {
         Map<Integer, Integer> map = new HashMap<>();
         return sb.toString();
     }
+
+    public static String PrintMinNumber2(int [] numbers) {
+        if (numbers == null || numbers.length ==0) {
+            return "";
+        }
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = i + 1; j < numbers.length; j++) {
+                int sum1 = Integer.parseInt(numbers[i] + "" + numbers[j]);
+                int sum2 = Integer.parseInt(numbers[j] + "" + numbers[i]);
+                if (sum1 > sum2) {
+                    int tmp = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = tmp;
+                }
+            }
+        }
+        StringBuilder res = new StringBuilder();
+        for (int item : numbers) {
+            res.append(item);
+        }
+        return res.toString();
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {3,5,1,4,2};
+        System.out.println(PrintMinNumber2(nums));
+
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+    }
 }

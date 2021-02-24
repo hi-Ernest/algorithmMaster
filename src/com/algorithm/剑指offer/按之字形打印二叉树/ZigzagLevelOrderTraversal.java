@@ -28,7 +28,7 @@ public class ZigzagLevelOrderTraversal {
             return res;
         }
 
-        Queue<TreeNode> queue = new LinkedList<>();
+        Deque<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
 
         while (!queue.isEmpty()) {

@@ -1,5 +1,7 @@
 package com.algorithm.剑指offer.二叉树镜像;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -48,7 +50,8 @@ public class Mirror {
             return;
         }
 
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new LinkedList<>();
+        //Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
 
         while (!stack.isEmpty()) {

@@ -48,20 +48,35 @@ public class FindKthToTail {
      * 快慢指针
      * time:O(N)
      * space:O(1)
+     *
      * @param head
      * @param k
      * @return
      */
-    public ListNode getKthToTail(ListNode head, int k) {
+    public ListNode FindKthToTail(ListNode head,int k) {
+        if (head == null || k == 0) {
+            return null;
+        }
         ListNode quick = head, slow = head;
         for (int i = 0; i < k; i++) {
+            if (quick == null) {
+                return null;
+            }
             quick = quick.next;
         }
-
-        while (quick != null) {
-            quick = quick.next;
+        while (quick != null && slow != null) {
             slow = slow.next;
+            quick = quick.next;
         }
         return slow;
     }
+
+    //        while (k > 0) {
+    //            if (quick == null) {
+    //                return null;
+    //            }
+    //            quick = quick.next;
+    //            k--;
+    //        }
+
 }
