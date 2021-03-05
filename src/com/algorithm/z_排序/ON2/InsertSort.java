@@ -1,5 +1,7 @@
 package com.algorithm.z_排序.ON2;
 
+import java.util.Arrays;
+
 /**
  * @author Ernest Chen
  * @date 2/16/21.
@@ -16,7 +18,7 @@ public class InsertSort {
      * 属于稳定性算法（待排序前数组中相同元素，排序后原有相同元素先后次序不变）
      * @param a 待排序的数组
      */
-    public void insertSort(int[] a) {
+    public static void insertSort(int[] a) {
         if (a.length <= 1) {
             return;
         }
@@ -29,8 +31,15 @@ public class InsertSort {
                 }else {
                     break;
                 }
-                a[j + 1] = value;
+                a[j] = value;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        int[] array = {4, 5, 6, 3, 2, 1};
+        insertSort(array);
+        System.out.println(Arrays.toString(array));
+
     }
 }

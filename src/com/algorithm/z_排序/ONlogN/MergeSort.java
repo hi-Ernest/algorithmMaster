@@ -39,7 +39,7 @@ public class MergeSort {
         mergeSort(array, l, mid);
         mergeSort(array, mid + 1, r);
         //merge(array, 0, array.length - 1, mid);
-        mergeBySentry(array, 0, array.length - 1, mid);
+        mergeBySentry(array, l, r, mid);
     }
 
     public void merge(int[] array, int left, int right, int mid) {

@@ -1,5 +1,7 @@
 package com.algorithm.z_排序.ON2;
 
+import java.util.Arrays;
+
 /**
  * @author Ernest Chen
  * @date 2/16/21.
@@ -44,7 +46,8 @@ public class BubbleSort {
     public static void main(String[] args) {
         int[] array = {4, 5, 6, 3, 2, 1};
         bubbleSort(array);
-        System.out.println(BubbleSort.swapCount);
+        System.out.println(Arrays.toString(array));
+        //System.out.println(BubbleSort.swapCount);
 
     }
 }
